@@ -1,0 +1,25 @@
+import os, sys, datetime
+
+# Open a file
+#path = "C:\logtest"
+#dirs = os.listdir(path)
+#
+## This would print all the files and directories
+#for file in dirs:
+#   print(file)
+max_date = 6000
+path = "C:\logtest"
+today = datetime.datetime.now()
+for file in os.listdir(path):
+    file_path=os.path.join(path, file)
+
+    file_date = datetime.datetime.fromtimestamp(os.path.getctime(file_path))
+    num = (today - file_date).seconds
+    if num > max_date:
+
+        if os.path.isfile(file_path):
+            print("delete this file:" + file)
+            os.remove(file_path)
+        if os.path.isdir(file_path):
+            print("this is a folder:" + file_path)
+    print(file + "  days:" + str(num))
