@@ -1,0 +1,20 @@
+import os
+PATH = "/home/project/Desktop/docker/containers/"
+
+def create_tree(num):
+    num_of_folders = num
+    os.chdir(PATH)
+    for i in range(num_of_folders):
+        folder_name = "logs_to_del" + str(i)
+        os.mkdir(folder_name)
+        with open(PATH +"/"+ folder_name +"/log.txt", "w") as f:
+            f.write("test\n")
+
+def backup():
+    backup_path = "/home/project/Desktop/backup"
+    os.chdir(PATH)
+    os.system(f"cp */*.txt {backup_path}")   
+     
+backup()
+#create_tree(10)
+# print(os.getcwd())
