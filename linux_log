@@ -1,4 +1,6 @@
 import os
+import shutil
+
 PATH = "/home/project/Desktop/docker/containers/"
 
 def create_tree(num):
@@ -14,7 +16,22 @@ def backup():
     backup_path = "/home/project/Desktop/backup"
     os.chdir(PATH)
     os.system(f"cp */*.txt {backup_path}")   
-     
+
+######################################
+src_path = ""
+dst_path = ""
+
+os.chdir(src_path)
+
+for dir in os.listdir(src_path):
+    file_path = os.path.join(src_path, dir)
+    if os.path.isfile(file_path):
+        shutil.copy(src_path, dst_path)
+        print(f'copied {dir} to {dst_path}')
+    print(file_path)
+    
+########################################
+    
 backup()
 #create_tree(10)
 # print(os.getcwd())
