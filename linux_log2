@@ -1,0 +1,62 @@
+
+import os
+import shutil
+
+
+
+PATH = "/home/project/Desktop/docker/containers/"
+
+def create_tree(num):
+    num_of_folders = num
+    os.chdir(PATH)
+    
+    #
+    for i in range(num_of_folders):
+        folder_name = "logs_to_del" + str(i)
+        os.mkdir(folder_name)
+        with open(PATH +"/"+ folder_name +"/log.txt", "w") as f:
+            f.write("test\n")
+
+def backup():
+    src_path = "/home/project/Desktop/docker/containers/"
+    dst_path = "/home/project/Desktop/backup"
+    file_name = "log.txt"
+    os.chdir(src_path)
+
+    for dir in os.listdir(src_path):
+        dir_path = os.path.join(src_path, dir)
+        # file_path = os.path.join(file_path, file_name)
+        file_path = src_path + dir + "/" + file_name
+        #print(file_path)
+        
+        #
+        os.chdir(dir_path)
+        #print(dir_path)
+        # print(os.listdir(dst_path))
+        # print(file_name)
+        # for file in os.listdir(dst_path):
+        #     if os.path.isfile(file_name):
+        #         print("1")
+        #         x =+ 1
+        #     file_name = str(x) + file_name
+        if os.path.isfile(file_path):
+            #print("2")
+            print(file_path)
+            
+            n = shutil.copy(file_path, dst_path)
+            print(n)
+                #print(f'copied {dir} to {dst_path}')
+                
+            # print(file_path)
+     
+# create_tree(10)
+# print(os.getcwd())
+
+def main():
+#    num = input("choose number of folders")
+#    create_tree(num)
+    backup()
+    
+   
+if __name__ == '__main__':
+   main()
